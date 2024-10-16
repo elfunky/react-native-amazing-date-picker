@@ -15,6 +15,13 @@ yarn add react-native-amazing-date-picker
 
 ```
 
+# Example Preview
+
+### Here’s a preview of how the DatePickerModal looks when rendered:
+
+![showYear prop to true it unable the year column.](https://raw.githubusercontent.com/elfunky/react-native-amazing-date-picker/main/src/assets/yearTrue.png)
+![ Default view of the date picker modal.](https://raw.githubusercontent.com/elfunky/react-native-amazing-date-picker/main/src/assets/yearFalse.png)
+
 ## Dependencies
 
 This package requires the following dependencies:
