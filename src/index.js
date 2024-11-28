@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     height: ITEM_HEIGHT * VISIBLE_ITEMS,
   },
   picker: {
-    width: wt(width / 2 - 20),
+    width: wt(width / 3 - 20),
     height: ITEM_HEIGHT * VISIBLE_ITEMS,
     overflow: "hidden",
     top: ht(20),

@@ -61,26 +61,64 @@ const App = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleDateChange = (date) => {
-    const selectedDate = moment(date).format('DD MMM YY') // Or your desired format.
-    setSelectedDate(selectedDate);
+  const handleDateChange = date => {
+    setSelectedDate(date);
     setModalVisible(false);
   };
 
+  const formattedDate = selectedDate.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
   return (
-    <View>
+    <View
+      style={styles.container}>
+      <Text style={styles.text}>{formattedDate}</Text>
       {/* Your component code */}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => setModalVisible(!isModalVisible)}>
+        <Text style={styles.buttonText}>Open Picker</Text>
+      </TouchableOpacity>
       <DatePickerModal
         isVisible={isModalVisible}
         onClose={() => setModalVisible(false)}
         date={selectedDate}
         onChange={handleDateChange}
-        isStartDate={true} // Set to false if it's an end date picker
+        isStartDate={true} // if you want to have two modal for different date then can handle with this prop
       />
     </View>
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: 'skyblue',
+    padding: 15,
+    borderRadius: 5,
+    marginBottom: 15,
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 18,
+    color: '#333',
+    marginBottom: 20,
+  },
+});
 export default App;
 ```
 
