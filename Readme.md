@@ -28,8 +28,6 @@ This package requires the following dependencies:
 
 - [react-native-modal](https://github.com/react-native-modal/react-native-modal): For the modal functionality.
 
-- [moment](https://github.com/moment/moment): A JavaScript date library for parsing, validating, manipulating, and formatting dates.
-
 ## Usage
 
 Here is a simple example of how to use the `DatePickerModal` component in your React Native application:
@@ -55,7 +53,7 @@ Below is the complete example of how to use this component within a simple app:
 import React, { useState } from "react";
 import { View } from "react-native";
 import { DatePickerModal } from "react-native-amazing-date-picker";
-import moment from 'moment';
+
 
 const App = () => {
   const [isModalVisible, setModalVisible] = useState(false);
