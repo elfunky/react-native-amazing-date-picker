@@ -37,12 +37,12 @@ const DatePickerModal = ({
     return Array.from({ length: daysInMonth }, (_, i) => i + 1);
   };
 
-  const [selectedDate, setSelectedDate] = useState(date.getDate());
-  const [selectedMonth, setSelectedMonth] = useState(date.getMonth());
-  const [selectedYear, setSelectedYear] = useState(date.getFullYear());
+  const [years] = useState(getYears());
   const [dates, setDates] = useState([]);
 
-  const [years] = useState(getYears());
+  const [selectedDate, setSelectedDate] = useState(1);
+  const [selectedMonth, setSelectedMonth] = useState(0);
+  const [selectedYear, setSelectedYear] = useState(1950);
 
   const monthScrollViewRef = useRef(null);
   const dateScrollViewRef = useRef(null);
@@ -52,6 +52,7 @@ const DatePickerModal = ({
   useEffect(() => {
     const newDates = getDaysInMonth(selectedYear, selectedMonth);
     setDates(newDates);
+
     // Adjust selected date if it exceeds the number of days in the new month
     if (selectedDate > newDates.length) {
       setSelectedDate(newDates.length);
@@ -60,25 +61,46 @@ const DatePickerModal = ({
 
   useEffect(() => {
     if (isVisible) {
-      setSelectedDate(date.getDate());
-      setSelectedMonth(date.getMonth());
-      setSelectedYear(date.getFullYear());
-    }
-  }, [isVisible, date]);
+      const initialDate = date || new Date();
+      const initialYear = initialDate.getFullYear();
+      const initialMonth = initialDate.getMonth();
+      const initialDay = initialDate.getDate();
 
+      // Ensure the initial values are within valid ranges
+      const validYear = Math.max(
+        Math.min(initialYear, years[years.length - 1]),
+        years[0]
+      );
+      const validMonth = Math.max(Math.min(initialMonth, 11), 0);
+      const validDay = Math.max(
+        Math.min(initialDay, getDaysInMonth(validYear, validMonth).length),
+        1
+      );
+
+      setSelectedYear(validYear);
+      setSelectedMonth(validMonth);
+      setSelectedDate(validDay);
+    }
+  }, [isVisible, date, years]);
+
+  // Scroll to correct positions when date changes
   useEffect(() => {
     if (isVisible) {
-      monthScrollViewRef.current?.scrollTo({
-        y: selectedMonth * ITEM_HEIGHT,
-        animated: false,
-      });
-      dateScrollViewRef.current?.scrollTo({
-        y: (selectedDate - 1) * ITEM_HEIGHT,
-        animated: false,
-      });
-      yearScrollViewRef.current?.scrollTo({
-        y: years.indexOf(selectedYear) * ITEM_HEIGHT,
-        animated: false,
+      requestAnimationFrame(() => {
+        monthScrollViewRef.current?.scrollTo({
+          y: selectedMonth * ITEM_HEIGHT,
+          animated: false,
+        });
+
+        dateScrollViewRef.current?.scrollTo({
+          y: (selectedDate - 1) * ITEM_HEIGHT,
+          animated: false,
+        });
+
+        yearScrollViewRef.current?.scrollTo({
+          y: years.indexOf(selectedYear) * ITEM_HEIGHT,
+          animated: false,
+        });
       });
     }
   }, [isVisible, selectedMonth, selectedDate, selectedYear, years]);
@@ -290,7 +312,7 @@ const styles = StyleSheet.create({
     top: ht(20),
   },
   confirmButton: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.lightBlue,
     top: ht(20),
   },
   selectedDateView: {

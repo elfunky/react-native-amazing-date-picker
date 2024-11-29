@@ -1,6 +1,6 @@
 {
   "name": "react-native-amazing-date-picker",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "The react-native-amazing-date-picker is a powerful and visually appealing spinning date picker for both Android and iOS platforms. This customizable component offers a sleek and intuitive user interface, allowing users to effortlessly select dates using a smooth, spinning wheel. Designed with flexibility and style in mind, this date picker integrates seamlessly into any React Native application, enhancing the user experience with minimal setup.",
   "main": "src/index.js",
   "scripts": {
