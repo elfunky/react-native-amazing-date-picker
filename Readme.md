@@ -41,44 +41,45 @@ Here is a simple example of how to use the `DatePickerModal` component in your R
   isStartDate={isStartDate}
   showYear={false} // To show only date and month
   modalContentStyle={{ height: 350 }} // Example custom style
-  modalTitleStyle={{ color: 'blue' }} // Example custom style
-  selectionOverlayStyle={{ backgroundColor: 'rgba(0,0,0,0.2)' }} // Example custom style
-  buttonContainerStyle={{ justifyContent: 'flex-end' }} // Example custom style
-  cancelButtonStyle={{ backgroundColor: 'red' }} // Example custom style
-  confirmButtonStyle={{ backgroundColor: 'green' }} // Example custom style
+  modalTitleStyle={{ color: "blue" }} // Example custom style
+  selectionOverlayStyle={{ backgroundColor: "rgba(0,0,0,0.2)" }} // Example custom style
+  buttonContainerStyle={{ justifyContent: "flex-end" }} // Example custom style
+  cancelButtonStyle={{ backgroundColor: "red" }} // Example custom style
+  confirmButtonStyle={{ backgroundColor: "green" }} // Example custom style
 />
+```
 
-Below is the complete example of how to use this component within a simple app:
+### Below is the complete example of how to use this component within a simple app:
 
+```javascript
 import React, { useState } from "react";
 import { View } from "react-native";
 import { DatePickerModal } from "react-native-amazing-date-picker";
-
 
 const App = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleDateChange = date => {
+  const handleDateChange = (date) => {
     setSelectedDate(date);
     setModalVisible(false);
   };
 
-  const formattedDate = selectedDate.toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const formattedDate = selectedDate.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
   return (
-    <View
-      style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.text}>{formattedDate}</Text>
       {/* Your component code */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setModalVisible(!isModalVisible)}>
+        onPress={() => setModalVisible(!isModalVisible)}
+      >
         <Text style={styles.buttonText}>Open Picker</Text>
       </TouchableOpacity>
       <DatePickerModal
@@ -95,25 +96,25 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   button: {
-    backgroundColor: 'skyblue',
+    backgroundColor: "skyblue",
     padding: 15,
     borderRadius: 5,
     marginBottom: 15,
-    alignItems: 'center',
+    alignItems: "center",
   },
   text: {
     fontSize: 18,
-    color: '#333',
+    color: "#333",
     marginBottom: 20,
   },
 });
