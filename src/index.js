@@ -10,7 +10,7 @@ const { width } = Dimensions.get("window");
 const ITEM_HEIGHT = ht(50);
 const VISIBLE_ITEMS = 3;
 
-const DatePickerModal = ({
+export const DatePickerModal = ({
   isVisible,
   onClose,
   date,
@@ -326,5 +326,3 @@ const styles = StyleSheet.create({
     gap: ht(20),
   },
 });
-
-export { DatePickerModal };
